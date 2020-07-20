@@ -5,4 +5,9 @@
   background: transparent;
   background-image: url('../../../images/Vector/Add-Button.svg');
   padding: 0;
+  transition: opacity 200ms linear;
+}
+
+.profile__add-button:hover {
+  opacity: 0.6;
 }
