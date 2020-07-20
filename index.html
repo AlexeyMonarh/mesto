@@ -13,16 +13,18 @@
 <body class="page">
 <!-- Header -->
 <header class="header">
-  <img src="#" alt="Лого (Место - Россия)" class="header__logo">
+  <img src="./images/Vector/Logo.svg" alt="Лого (Место - Россия)" class="header__logo">
 </header>
 <!-- Content -->
 <main class="content">
 <!-- Profile -->
 <section class="profile">
-  <img src="#" alt="Фото Жак-Ив Кусто" class="profile__avatar">
+  <img src="./images/kusto.png" alt="Фото Жак-Ив Кусто" class="profile__avatar">
   <div class="profile__info">
-    <h1></h1>
-    <p></p>
+    <span>
+    <h1 class="profile__info-name">Жак-Ив Кусто</h1>
+    <p class="profile__info-status">Исследователь океана</p>
+    </span>
     <button class="profile__info-edit-button"></button>
   </div>
   <button class="profile__add-button"></button>
@@ -30,20 +32,67 @@
 <!-- Elements -->
 <section>
   <ul class="elements">
-    <li class="element__karachaevsk"></li>
-    <li class="element__elbrus"></li>
-    <li class="element__dombai"></li>
-    <li></li>
-    <li></li>
-    <li></li>
+    <li class="elements__element">
+      <img src="./images/karach-min.png" alt="Карачаевск">
+      <div class="elements__element-description">
+        <h2 class="elements__element-title">Карачаевск</h2>
+        <button type="submit" class="elements__element-like"></button>
+      </div>
+    </li>
+    <li class="elements__element">
+      <img src="./images/elbrus-min.png" alt="Эльбрус">
+      <div class="elements__element-description">
+        <h2 class="elements__element-title">Гора Эльбрус</h2>
+        <button type="submit" class="elements__element-like"></button>
+      </div>
+    </li>
+    <li class="elements__element">
+      <img src="./images/dombai-min.png" alt="Домбай">
+      <div class="elements__element-description">
+        <h2 class="elements__element-title">Домбай</h2>
+        <button type="submit" class="elements__element-like"></button>
+      </div>
+    </li>
+    <li class="elements__element">
+      <img src="./images/elbrus-min.png" alt="Гора Эльбрус">
+      <div class="elements__element-description">
+        <h2 class="elements__element-title">Гора Эльбрус</h2>
+        <button type="submit" class="elements__element-like"></button>
+      </div>
+    </li>
+    <li class="elements__element">
+      <img src="./images/dombai-min.png" alt="Домбай">
+      <div class="elements__element-description">
+        <h2 class="elements__element-title">Домбай</h2>
+        <button type="submit" class="elements__element-like"></button>
+      </div>
+    </li>
+    <li class="elements__element">
+      <img src="./images/karach-min.png" alt="Карачаево-Черкессия">
+      <div class="elements__element-description">
+        <h2 class="elements__element-title">Карачаево-Черкессия</h2>
+        <button type="submit" class="elements__element-like"></button>
+      </div>
+    </li>
   </ul>
 </section>
 </main>
 <!-- Footer -->
-<section class="footer">
-  <p class="footer__date"></p>
-</section>
-
+<footer class="footer">
+  <img src="./images/Vector/© 2020 Mesto Russia.svg" alt="">
+</footer>
+<!-- Form -->
+<div class="form">
+  <div class="form__container">
+    <button class="form__close-icon"></button>
+      <h2 class="form__heading">Редактировать профиль</h2>
+        <form action="#" method="POST" class="form__inputs">
+          <input type="text" class="form__input" placeholder="Жак-Ив Кусто">
+          <input type="text" class="form__input" placeholder="Исследователь океана">
+          <button type="submit" class="form__submit-button">Сохранить</button>
+        </form>
+  </div>
+</div>
 
 </body>
 </html>

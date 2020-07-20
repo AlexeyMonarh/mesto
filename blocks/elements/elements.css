@@ -1,3 +1,14 @@
- @import url('./__karachaevsk/element__karachaevsk.css');
- @import url('./__elbrus/element__elbrus.css');
- @import url('./__dombai/element__dombai.css');
+ @import url('./__element/elements__element.css');
+ @import url('./__element-description/elements__element-description.css');
+ @import url('./__element-title/elements__element-title.css');
+ @import url('./__element-like/elements__element-like.css');
+
+ .elements {
+   margin: 0 auto;
+   list-style: none;
+   padding: 0;
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+   grid-template-rows: repeat(2, 1fr);
+   grid-gap: 18px;
+ }
