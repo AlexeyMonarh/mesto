@@ -1,0 +1,9 @@
+.elements__element-like {
+  padding: 0;
+  border: none;
+  background: transparent;
+  background-image: url('../../../images/Vector/like.svg');
+  background-size: cover;
+  width: 21px;
+  height: 19px;
+}

@@ -1,1 +1,10 @@
  @import url('./__info-edit-button/profile__info-edit-button.css');
+
+.profile__info {
+  display: flex;
+  align-items: baseline;
+  margin-right: auto;
+  max-width: 336px;
+  max-height: 77px;
+  margin-left: 30px;
+}
