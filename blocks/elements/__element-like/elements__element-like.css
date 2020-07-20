@@ -1,9 +1,15 @@
 .elements__element-like {
   padding: 0;
   border: none;
+  outline: none;
   background: transparent;
   background-image: url('../../../images/Vector/like.svg');
   background-size: cover;
   width: 21px;
   height: 19px;
+  transition: opacity 200ms linear;
+}
+
+.elements__element-like:hover{
+  transform: scale(1.2);
 }

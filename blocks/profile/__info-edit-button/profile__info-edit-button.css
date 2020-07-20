@@ -6,4 +6,9 @@
   background-image: url('../../../../images/Vector/edit_button.svg');
   padding: 0;
   margin-left: 17px;
+  transition: opacity 200ms linear;
+}
+
+.profile__info-edit-button:hover {
+  opacity: 0.6;
 }
