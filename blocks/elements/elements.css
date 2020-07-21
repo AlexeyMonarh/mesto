@@ -1,4 +1,5 @@
  @import url('./__element/elements__element.css');
+ @import url('./__element-img/elements__element-img.css');
  @import url('./__element-description/elements__element-description.css');
  @import url('./__element-title/elements__element-title.css');
  @import url('./__element-like/elements__element-like.css');
@@ -15,7 +16,14 @@
 
  @media screen and (max-width: 910px) {
   .elements {
-    grid-template-columns: repeat(2, 4fr);
+    grid-template-columns: repeat(2, 2fr);
     grid-template-rows: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 696px) {
+  .elements {
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(6, 1fr);
   }
 }
