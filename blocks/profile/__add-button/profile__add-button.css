@@ -11,3 +11,17 @@
 .profile__add-button:hover {
   opacity: 0.6;
 }
+
+@media screen and (max-width: 696px) {
+  .profile__add-button {
+    width: 100%;
+    border: 2px solid #FFFFFF;
+    box-sizing: border-box;
+    border-radius: 2px;
+    object-fit: cover;
+    margin-top: 36px;
+    background-image: url('../../../images/Vector/krest.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}

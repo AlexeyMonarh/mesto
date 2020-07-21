@@ -6,3 +6,9 @@
   max-height: 77px;
   margin-left: 30px;
 }
+
+@media screen and (max-width: 696px) {
+  .profile__info {
+   margin: auto;
+  }
+}
