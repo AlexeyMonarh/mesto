@@ -3,6 +3,7 @@
 @import url('../form/__heading/form__heading.css');
 @import url('../form/__inputs/form__inputs.css');
 @import url('../form/__input-name/form__input-name.css');
+@import url('../form/__input-job/form__input-job.css');
 @import url('../form/__submit-button/form__submit-button.css');
 
 .form {

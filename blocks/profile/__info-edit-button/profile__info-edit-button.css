@@ -3,7 +3,7 @@
   height: 24px;
   border: none;
   background: transparent;
-  background-image: url('../../../../images/Vector/edit_button.svg');
+  background-image: url('../../../images/Vector/edit_button.svg');
   padding: 0;
   margin-left: 17px;
   transition: opacity 200ms linear;
