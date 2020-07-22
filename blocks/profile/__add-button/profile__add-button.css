@@ -3,7 +3,7 @@
   height: 50px;
   border: none;
   background: transparent;
-  background-image: url('../../../images/Vector/Add-Button.svg');
+  background-image: url('../../../images/vector/add-Button.svg');
   padding: 0;
   transition: opacity 200ms linear;
 }
@@ -20,7 +20,7 @@
     border-radius: 2px;
     object-fit: cover;
     margin-top: 36px;
-    background-image: url('../../../images/Vector/krest.svg');
+    background-image: url('../../../images/vector/krest.svg');
     background-repeat: no-repeat;
     background-position: center;
   }
