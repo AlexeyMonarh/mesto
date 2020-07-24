@@ -6,7 +6,6 @@
  @import url('./__element-like/elements__element-like.css');
 
  .elements {
-   position: relative;
    margin: 0 auto;
    list-style: none;
    padding: 0;

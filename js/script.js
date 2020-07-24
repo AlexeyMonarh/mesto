@@ -1,13 +1,81 @@
+const form = document.querySelector('.popup');
 
-let openForm = document.querySelector('.profile__info-edit-button');
-let closeForm = document.querySelector('.popup__close-icon');
-let form = document.querySelector('.popup');
+const addElementModal = document.querySelector('.popup_add-element');
+const editProfileModal  = document.querySelector('.popup_edit-profile');
 
-let formElement = document.querySelector('.popup');
+const popupInputs = editProfileModal.querySelector('.popup__inputs');
+const addElement = addElementModal.querySelector('.popup__inputs');
+
+let openFormEdit = document.querySelector('.profile__info-edit-button');
+const openAddButton = document.querySelector('.profile__add-button');
+
+let closeFormAdd = addElementModal.querySelector('.popup__close-icon');
+let closeFormEdit = editProfileModal.querySelector('.popup__close-icon');
+
+
 let profileName = document.querySelector('.profile__info-name');
 let profileStatus = document.querySelector('.profile__info-status');
-let nameInput = document.querySelector('.popup__input-name');
-let jobInput = document.querySelector('.popup__input-job');
+
+let nameInput = popupInputs.querySelector('.popup__input-name');
+let jobInput = popupInputs.querySelector('.popup__input-job');
+
+let placeInput = addElement.querySelector('.popup__input-place');
+let linkInput = addElement.querySelector('.popup__input-link');
+
+const elementsTemplate = document.querySelector('.elements__template').content.querySelector('.elements__element');
+const elements = document.querySelector('.elements');
+
+nameInput.value = profileName.textContent;
+jobInput.value = profileStatus.textContent;
+
+function toggleForm(form) {
+  form.classList.toggle('popup_open');
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileStatus.textContent;
+}
+
+
+
+function formSubmitHandler(evt) {
+  evt.preventDefault();
+
+  profileName.textContent = nameInput.value;
+  profileStatus.textContent = jobInput.value;
+
+  toggleForm(editProfileModal);
+}
+
+function addElementSubmitHandler(evt) {
+  evt.preventDefault();
+
+  renderElement({name: placeInput.value, link: linkInput.value});
+
+  
+  toggleForm(addElementModal);
+}
+
+popupInputs.addEventListener('submit', formSubmitHandler);
+addElement.addEventListener('submit', addElementSubmitHandler);
+
+
+openFormEdit.addEventListener('click', () => {
+  toggleForm(editProfileModal);
+}); 
+closeFormEdit.addEventListener('click', () => {
+  toggleForm(editProfileModal);
+});
+
+openAddButton.addEventListener('click', () => {
+  toggleForm(addElementModal);
+}); 
+
+closeFormAdd.addEventListener('click', () => {
+  toggleForm(addElementModal);
+});
+
+
+
+
 
 const initialCards = [
   {
@@ -36,10 +104,12 @@ const initialCards = [
   }
 ];
 
-initialCards.forEach((data) => {
-  const elementsTemplate = document.querySelector('.elements__template').content.querySelector('.elements__element');
-  const elementsElement = elementsTemplate.cloneNode(true);
+function renderElement(data) {
+  elements.prepend(createElement(data));
+}
 
+function createElement(data) {
+  const elementsElement = elementsTemplate.cloneNode(true);
   const elementsImage = elementsElement.querySelector('.elements__element-img');
   const elementsTitle = elementsElement.querySelector('.elements__element-title');
   const elementsLikeButton = elementsElement.querySelector('.elements__element-like');
@@ -48,31 +118,29 @@ initialCards.forEach((data) => {
   elementsTitle.textContent = data.name;
   elementsImage.src = data.link;
 
-  const elements = document.querySelector('.elements');
-  elements.prepend(elementsElement);
+  return elementsElement;
+}
 
+initialCards.forEach((data) => {
+  renderElement(data);
 })
 
-nameInput.value = profileName.textContent;
-jobInput.value = profileStatus.textContent;
 
-function toggleForm() {
-  form.classList.toggle('popup_open');
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileStatus.textContent;
-}
 
-openForm.addEventListener('click', toggleForm);
 
-closeForm.addEventListener('click', toggleForm);
 
-function formSubmitHandler(evt) {
-  evt.preventDefault();
 
-  profileName.textContent = nameInput.value;
-  profileStatus.textContent = jobInput.value;
 
-  toggleForm();
-}
 
-formElement.addEventListener('submit', formSubmitHandler);
+// function toggleForm2() {
+//   addElementModal.classList.toggle('popup_open');
+  
+// }
+
+
+
+
+
+// openAddButton.addEventListener('click', () => {
+//   toggleForm2();
+// })

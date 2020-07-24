@@ -35,7 +35,8 @@
 <footer class="footer">
   <img src="./images/vector/mesto_Russia.svg" alt="2020_Место_Россия">
 </footer>
-<div class="popup">
+
+<div class="popup popup_edit-profile">
   <div class="popup__container">
     <button class="popup__close-icon"></button>
       <h2 class="popup__heading">Редактировать профиль</h2>
@@ -43,6 +44,18 @@
           <input type="text" class="popup__input-name" value="" placeholder="Имя" name="name">
           <input type="text" class="popup__input-job" value="" placeholder="О себе" name="job">
           <button type="submit" class="popup__submit-button">Сохранить</button>
+        </form>
+  </div>
+</div>
+
+<div class="popup popup_add-element">
+  <div class="popup__container">
+    <button class="popup__close-icon"></button>
+      <h2 class="popup__heading">Новое место</h2>
+        <form action="#" class="popup__inputs" name="popup">
+          <input type="text" class="popup__input-name popup__input-place" value="" placeholder="Название" name="place">
+          <input type="text" class="popup__input-job popup__input-link" value="" placeholder="Ссылка на картинку" name="link">
+          <button type="submit" class="popup__submit-button">Создать</button>
         </form>
   </div>
 </div>
