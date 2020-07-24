@@ -49,9 +49,10 @@ function addElementSubmitHandler(evt) {
   evt.preventDefault();
 
   renderElement({name: placeInput.value, link: linkInput.value});
-
+  
   
   toggleForm(addElementModal);
+  
 }
 
 popupInputs.addEventListener('submit', formSubmitHandler);
@@ -104,6 +105,11 @@ const initialCards = [
   }
 ];
 
+function handleLikeClick(a, b) {
+  elementsLikeButton.classList.remove('.elements__element-like');
+  elementsLikeButton.classList.add('.elements__element-like_active');
+}
+
 function renderElement(data) {
   elements.prepend(createElement(data));
 }
@@ -113,7 +119,20 @@ function createElement(data) {
   const elementsImage = elementsElement.querySelector('.elements__element-img');
   const elementsTitle = elementsElement.querySelector('.elements__element-title');
   const elementsLikeButton = elementsElement.querySelector('.elements__element-like');
+  
   const elementsDeleteButton = elementsElement.querySelector('.elements__element-delete-button');
+
+  elementsLikeButton.addEventListener('click', () => {
+    handleLikeClick();
+  });
+
+  elementsDeleteButton.addEventListener('click', () => {
+    handleDeleteClick();
+  });
+
+  elementsImage.addEventListener('click', () => {
+    handleImageClick();
+  });
 
   elementsTitle.textContent = data.name;
   elementsImage.src = data.link;

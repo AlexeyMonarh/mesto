@@ -11,5 +11,10 @@
 }
 
 .elements__element-like:hover{
-  transform: scale(1.2);
+  /* transform: scale(1.2); */
+  opacity: 0.6;
+}
+
+.elements__element-like_active {
+  background-image: url('../../../images/vector/like-active.svg');
 }
