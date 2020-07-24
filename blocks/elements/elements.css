@@ -1,10 +1,12 @@
  @import url('./__element/elements__element.css');
+ @import url('./__element-delete-button/elements__element-delete-button.css');
  @import url('./__element-img/elements__element-img.css');
  @import url('./__element-description/elements__element-description.css');
  @import url('./__element-title/elements__element-title.css');
  @import url('./__element-like/elements__element-like.css');
 
  .elements {
+   position: relative;
    margin: 0 auto;
    list-style: none;
    padding: 0;
