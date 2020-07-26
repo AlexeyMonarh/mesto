@@ -13,6 +13,12 @@
 ### JS (Методы)
 * querySelector
 * addEventListener
+* forEach
+* cloneNode
+* createElement
+* append
+* remove
+* closest
 
 ***Основа взаимодействия с пользователем***
 
