@@ -16,7 +16,7 @@
 * forEach
 * cloneNode
 * createElement
-* append
+* prepend
 * remove
 * closest
 
