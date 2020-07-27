@@ -45,10 +45,6 @@ function formSubmitHandler(evt) {
   toggleForm(editProfileModal);
 }
 
-// function addElementQueue(data) {
-//   elements.append(createElement(data));
-// }
-
 function addElementSubmitHandler(evt) {
   evt.preventDefault();  
   renderElement({name: placeInput.value, link: linkInput.value});
