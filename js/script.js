@@ -29,9 +29,29 @@ const openAddButton = document.querySelector('.profile__add-button');
 const elementsTemplate = document.querySelector('.elements__template').content.querySelector('.elements__element');
 const elements = document.querySelector('.elements');
 
+const closeOverlay = () => {
+  const overlay = Array.from(document.querySelectorAll('.popup__overlay'));
+  overlay.forEach((form) => {
+    form.addEventListener('click', (evt) => {
+      toggleForm(evt.target.parentElement);
+    });
+  });
+}
+closeOverlay();
+
+function formEsc(evt) {
+  if(evt.key === "Escape") {
+    toggleForm(document.querySelector('.popup_open'));
+  }
+}
 
 function toggleForm(form) {
   form.classList.toggle('popup_open');
+  if (form.classList.contains('popup_open')) {
+    addEventListener('keydown', formEsc);
+  } else {
+    removeEventListener('keydown', formEsc);
+  };
   nameInput.value = profileName.textContent;
   jobInput.value = profileStatus.textContent;
 }
@@ -99,17 +119,6 @@ function createElement(data) {
 
   return card;
 };
-
-function eraseError(popup) {
-  const popupError = Array.from(popup.querySelectorAll('.popup__error'));
-  popupError.forEach((error) => {
-    error.classList.remove('.popup__error_active');
-  });
-  const popupInput = Array.from(popup.querySelectorAll('.popup__input'));
-  popupInput.forEach((input) => {
-    input.classList.remove('popup__input_type_error');
-  });
-}
 
 popupInputs.addEventListener('submit', formSubmitHandler);
 addElement.addEventListener('submit', addElementSubmitHandler);
