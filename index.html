@@ -38,24 +38,30 @@
 <div class="popup popup_edit-profile">
   <div class="popup__container">
     <button class="popup__close-icon"></button>
-      <h2 class="popup__heading">Редактировать профиль</h2>
-        <form action="#" class="popup__inputs" name="popup">
-          <input type="text" class="popup__input-name" value="" placeholder="Имя" name="name">
-          <input type="text" class="popup__input-job" value="" placeholder="О себе" name="job">
-          <button type="submit" class="popup__submit-button">Сохранить</button>
+        <form action="#" class="popup__inputs" name="popup" novalidate>
+          <h2 class="popup__heading">Редактировать профиль</h2>
+          <input type="text" class="popup__input popup__input-name" value="" placeholder="Имя" name="name" required minlength="2" maxlength="40" autocomplete="off">
+          <span class="popup__error" id="name-error"></span>
+          <input type="text" class="popup__input popup__input-job" value="" placeholder="О себе" name="job" required minlength="2" maxlength="200" autocomplete="off">
+          <span class="popup__error" id="job-error"></span>
+          <button type="submit" class="popup__submit-button popup__submit-button_disabled" disabled>Сохранить</button>
         </form>
+        
   </div>
 </div>
 
 <div class="popup popup_add-element">
   <div class="popup__container">
     <button class="popup__close-icon"></button>
-      <h2 class="popup__heading">Новое место</h2>
-        <form action="#" class="popup__inputs" name="popup">
-          <input type="text" class="popup__input-name popup__input-place" value="" placeholder="Название" name="place">
-          <input type="text" class="popup__input-job popup__input-link" value="" placeholder="Ссылка на картинку" name="link">
-          <button type="submit" class="popup__submit-button">Создать</button>
+        <form action="#" class="popup__inputs" name="popup" novalidate>
+          <h2 class="popup__heading">Новое место</h2>
+          <input type="text" class="popup__input popup__input-place" value="" placeholder="Название" name="place" required minlength="1" maxlength="30" autocomplete="off">
+          <span class="popup__error" id="place-error"></span>
+          <input type="url" class="popup__input popup__input-link" value="" placeholder="Ссылка на картинку" name="link" required autocomplete="off">
+          <span class="popup__error" id="link-error"></span> 
+          <button type="submit" class="popup__submit-button popup__submit-button_disabled" disabled>Создать</button>   
         </form>
+        
   </div>
 </div>
 
@@ -78,7 +84,8 @@
   </li>
   </template>
 
-<script src="./js/initial-сards.js"></script> 
+<script src="./js/validate.js"></script>
+<script src="./js/initial-сards.js"></script>
 <script src="./js/script.js"></script>
 
 </body>

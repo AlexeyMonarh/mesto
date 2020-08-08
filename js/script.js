@@ -100,6 +100,17 @@ function createElement(data) {
   return card;
 };
 
+function eraseError(popup) {
+  const popupError = Array.from(popup.querySelectorAll('.popup__error'));
+  popupError.forEach((error) => {
+    error.classList.remove('.popup__error_active');
+  });
+  const popupInput = Array.from(popup.querySelectorAll('.popup__input'));
+  popupInput.forEach((input) => {
+    input.classList.remove('popup__input_type_error');
+  });
+}
+
 popupInputs.addEventListener('submit', formSubmitHandler);
 addElement.addEventListener('submit', addElementSubmitHandler);
 

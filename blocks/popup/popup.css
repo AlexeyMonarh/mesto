@@ -2,11 +2,15 @@
 @import url('../popup/__close-icon/popup__close-icon.css');
 @import url('../popup/__heading/popup__heading.css');
 @import url('../popup/__inputs/popup__inputs.css');
+@import url('../popup/__input/popup__input.css');
 @import url('../popup/__input-name/popup__input-name.css');
 @import url('../popup/__input-job/popup__input-job.css');
 @import url('../popup/__submit-button/popup__submit-button.css');
+@import url('../popup/__submit-button/_disabled/popup__submit-button_disabled.css');
 @import url('../popup/__image/popup__image.css');
 @import url('../popup/__title/popup__title.css');
+@import url('../popup/__error/popup__error.css');
+@import url('../popup/__error/_active/popup__error_active.css');
 
 .popup {
   position: fixed;
@@ -21,6 +25,7 @@
   background: #00000080;
   transition: visibility 0.3s, opacity 0.3s ease-out;
   opacity: 0;
+  box-sizing: border-box;
 }
 
 
