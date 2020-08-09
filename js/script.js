@@ -30,7 +30,7 @@ const elementsTemplate = document.querySelector('.elements__template').content.q
 const elements = document.querySelector('.elements');
 
 const closeOverlay = () => {
-  const overlay = Array.from(document.querySelectorAll('.popup__overlay'));
+  const overlay = document.querySelectorAll('.popup__overlay');
   overlay.forEach((form) => {
     form.addEventListener('click', (evt) => {
       toggleForm(evt.target.parentElement);
@@ -43,6 +43,20 @@ function formEsc(evt) {
   if(evt.key === "Escape") {
     toggleForm(document.querySelector('.popup_open'));
   }
+}
+
+function cleanPopup() {
+  // const span = document.querySelectorAll('.popup__error');
+  // span.textContent = '';
+  const popupError = document.querySelectorAll('.popup__error');
+  popupError.forEach((error) => {
+    error.classList.remove('popup__error_active');
+    error.classList.remove('popup__input-invalid');
+  });
+  const inputError = document.querySelectorAll('.popup__input');
+  inputError.forEach((error) => {
+    error.classList.remove('popup__input-invalid');
+  });
 }
 
 function toggleForm(form) {
@@ -70,6 +84,7 @@ function addElementSubmitHandler(evt) {
   renderElement({name: placeInput.value, link: linkInput.value});
   
   toggleForm(addElementModal);
+
   placeInput.value = '';
   linkInput.value = '';
 }
@@ -128,11 +143,13 @@ openFormEdit.addEventListener('click', () => {
   toggleForm(editProfileModal);
 }); 
 closeFormEdit.addEventListener('click', () => {
+  cleanPopup();
   toggleForm(editProfileModal);
 });
 
 openAddButton.addEventListener('click', () => {
   toggleForm(addElementModal);
+  cleanPopup();
 }); 
 
 closeFormAdd.addEventListener('click', () => {
