@@ -8,7 +8,6 @@ const object = {
   errorClassActive: 'popup__error_active'
 }
 
-
 const enableValidation = ({ formSelector, inputSelector, inputInvalidClass, submitButtonSelector, inactiveButtonClass, errorClass, errorClassActive }) => {
   
   const forms = Array.from(document.querySelectorAll(formSelector));
@@ -18,7 +17,6 @@ const enableValidation = ({ formSelector, inputSelector, inputInvalidClass, subm
     });
 
     const inputs = Array.from(formElement.querySelectorAll(inputSelector));
-    
 
     inputs.forEach((inputElement) => {
 
