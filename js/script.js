@@ -7,6 +7,9 @@ const imageModal = document.querySelector('.popup_image');
 const popupInputs = editProfileModal.querySelector('.popup__inputs');
 const addElement = addElementModal.querySelector('.popup__inputs');
 
+const editProfileSubmitButton = editProfileModal.querySelector('.popup__submit-button');
+const addElementSubmitButton = addElementModal.querySelector('.popup__submit-button');
+
 const closeFormAdd = addElementModal.querySelector('.popup__close-icon');
 const closeFormEdit = editProfileModal.querySelector('.popup__close-icon');
 const closeFormImage = imageModal.querySelector('.popup__close-icon');
@@ -33,7 +36,7 @@ const closeOverlay = () => {
   const overlay = document.querySelectorAll('.popup__overlay');
   overlay.forEach((form) => {
     form.addEventListener('click', (evt) => {
-      toggleForm(evt.target.parentElement);
+      togglePopup(evt.target.parentElement);
     });
   });
 }
@@ -41,44 +44,30 @@ closeOverlay();
 
 function formEsc(evt) {
   if(evt.key === "Escape") {
-    toggleForm(document.querySelector('.popup_open'));
+    togglePopup(document.querySelector('.popup_open'));
   }
 }
 
-function cleanPopup() {
-  const popupError = document.querySelectorAll('.popup__error');
-  popupError.forEach((error) => {
-    error.classList.remove('popup__error_active');
-    error.classList.remove('popup__input-invalid');
-  });
-  const inputError = document.querySelectorAll('.popup__input');
-  inputError.forEach((error) => {
-    error.classList.remove('popup__input-invalid');
-  });
-}
-
-function toggleForm(form) {
+function togglePopup(form) {
   form.classList.toggle('popup_open');
   if (form.classList.contains('popup_open')) {
     addEventListener('keydown', formEsc);
   } else {
     removeEventListener('keydown', formEsc);
-  };
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileStatus.textContent;
+  }
 }
 
 function formSubmitHandler(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileStatus.textContent = jobInput.value;
-  toggleForm(editProfileModal);
+  togglePopup(editProfileModal);
 }
 
 function addElementSubmitHandler(evt) {
   evt.preventDefault();  
   renderElement({name: placeInput.value, link: linkInput.value});
-  toggleForm(addElementModal);
+  togglePopup(addElementModal);
 }
 
 function handleLikeClick(elementsLikeButton) {
@@ -88,6 +77,12 @@ function handleLikeClick(elementsLikeButton) {
 function handleDeleteClick(elementsDeleteButton) {
   const listElement = elementsDeleteButton.closest('.elements__element');
   listElement.remove();
+}
+
+function handleImageClick(data) {
+  popupOpenTitle.textContent = data.name;
+  popupOpenImage.src = data.link;
+  togglePopup(imageModal);
 }
 
 function renderElement(data) {
@@ -110,47 +105,45 @@ function createElement(data) {
   });
 
   elementsImage.addEventListener('click', () => {
-    handleImageClick();
+    handleImageClick(data);
   });
   
-  function handleImageClick() {
-    popupOpenTitle.textContent = data.name;
-    popupOpenImage.src = data.link;
-    toggleForm(imageModal);
-  }
-
   elementsTitle.textContent = data.name;
   elementsImage.src = data.link;
+  elementsImage.alt = data.name;
   return card;
-};
+}
 
 popupInputs.addEventListener('submit', formSubmitHandler);
 addElement.addEventListener('submit', addElementSubmitHandler);
 
 openFormEdit.addEventListener('click', () => {
-  toggleForm(editProfileModal);
+  enableButton(editProfileSubmitButton);
+  togglePopup(editProfileModal);
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileStatus.textContent;
 }); 
+
 closeFormEdit.addEventListener('click', () => {
   cleanPopup();
-  toggleForm(editProfileModal);
+  togglePopup(editProfileModal);
 });
 
 openAddButton.addEventListener('click', () => {
-  toggleForm(addElementModal);
+  disableButton(addElementSubmitButton);
+  togglePopup(addElementModal);
   cleanPopup();
   placeInput.value = '';
   linkInput.value = '';
-}); 
+});
+
 closeFormAdd.addEventListener('click', () => {
-  toggleForm(addElementModal);
+  togglePopup(addElementModal);
 });
 
 closeFormImage.addEventListener('click', () => {
-  toggleForm(imageModal);
+  togglePopup(imageModal);
 });
-
-nameInput.value = profileName.textContent;
-jobInput.value = profileStatus.textContent;
 
 initialCards.forEach((data) => {
   renderElement(data);
