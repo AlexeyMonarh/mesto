@@ -3,9 +3,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  max-width: 75vw;
-  height: auto;
-  width: 430px;
+  max-width: 430px;
+  width: 75vw;
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
   background: #fff;
