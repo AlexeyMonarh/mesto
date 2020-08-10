@@ -45,9 +45,9 @@ function toggleButton(formElement, inputs, submitButtonSelector) {
   const isFormValid = inputs.some((inputElement) => !inputElement.validity.valid);
   const buttonSubmit = formElement.querySelector(submitButtonSelector);
     if (!isFormValid) {
-      enableButton(buttonSubmit);
+      SubmitButtonActive(buttonSubmit);
     } else {
-      disableButton(buttonSubmit);
+      SubmitButtonNotActive(buttonSubmit);
     }
 }
 
@@ -74,12 +74,12 @@ function toggleError (formElement, inputElement, inputInvalidClass, errorClass, 
   }
 }
 
-function enableButton(a) {
-  a.removeAttribute('disabled');
-  a.classList.remove('popup__submit-button_disabled');
+function SubmitButtonActive(btn) {
+  btn.removeAttribute('disabled');
+  btn.classList.remove('popup__submit-button_disabled');
 }
 
-function disableButton(a) {
-  a.setAttribute('disabled', true);
-  a.classList.add('popup__submit-button_disabled');
+function SubmitButtonNotActive(btn) {
+  btn.setAttribute('disabled', true);
+  btn.classList.add('popup__submit-button_disabled');
 }

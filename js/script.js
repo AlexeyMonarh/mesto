@@ -118,7 +118,7 @@ popupInputs.addEventListener('submit', formSubmitHandler);
 addElement.addEventListener('submit', addElementSubmitHandler);
 
 openFormEdit.addEventListener('click', () => {
-  enableButton(editProfileSubmitButton);
+  SubmitButtonActive(editProfileSubmitButton);
   togglePopup(editProfileModal);
   nameInput.value = profileName.textContent;
   jobInput.value = profileStatus.textContent;
@@ -130,7 +130,7 @@ closeFormEdit.addEventListener('click', () => {
 });
 
 openAddButton.addEventListener('click', () => {
-  disableButton(addElementSubmitButton);
+  SubmitButtonNotActive(addElementSubmitButton);
   togglePopup(addElementModal);
   cleanPopup();
   placeInput.value = '';
