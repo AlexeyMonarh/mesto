@@ -4,6 +4,7 @@
   flex-direction: column;
   justify-content: space-between;
   max-width: 430px;
+  width: 75vw;
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
   background: #fff;
