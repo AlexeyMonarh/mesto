@@ -1,82 +1,9 @@
-const initialCards = [
-  {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-  {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-  {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-  {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-  {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-  {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
-
-
-
-const elements = document.querySelector('.elements');
-
-// const initialCards = [
-//   {
-//       name: 'Архыз',
-//       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-//     },
-//   {
-//       name: 'Челябинская область',
-//       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-//     },
-//   {
-//       name: 'Иваново',
-//       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-//     },
-//   {
-//       name: 'Камчатка',
-//       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-//     },
-//   {
-//       name: 'Холмогорский район',
-//       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-//     },
-//   {
-//       name: 'Байкал',
-//       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-//     }
-// ];
-
-// function handleImageClick(data) {
-//     popupOpenTitle.textContent = data.name;
-//     popupOpenImage.src = data.link;
-//     togglePopup(imageModal);
-//   }
-
-// function togglePopup(form) {
-//   form.classList.toggle('popup_open');
-//   if (form.classList.contains('popup_open')) {
-//     addEventListener('keydown', formEsc);
-//   } else {
-//     removeEventListener('keydown', formEsc);
-//   }
-// }
-
-
 class Card {
-  constructor(element, cardSelector) {
+  constructor(element, formElement) {
     this._name = element.name;
     this._link = element.link;
-    this._cardSelector = cardSelector;
+    this._formElement = formElement;
+
   }
 
   _removeCard = () => {
@@ -87,11 +14,19 @@ class Card {
     this._view.querySelector('.elements__element-like').classList.toggle('elements__element-like_active');
   }
 
-  // _addCard = (element) => {
-    
-  // }
+  _handleImageClick = () => {
+    document.querySelector('.popup_image').classList.add('popup_open');
+    document.querySelector('.popup__title').textContent = this._name;
+    document.querySelector('.popup__image').src = this._link;
+  }
 
-  _renderCard() {
+  _closeImageEscape = (evt) => {
+    if (evt.key === "Escape") {
+      document.querySelector('.popup_image').classList.remove('popup_open');
+    }
+  }
+
+  renderCard = () => {
     const itemTemplate = document.querySelector('.elements__template').content.children[0];
     this._view = itemTemplate.cloneNode('true');
     this._view.querySelector('.elements__element-title').textContent = this._name;
@@ -101,25 +36,13 @@ class Card {
     return this._view;
   }
 
-  _setEventListeners() {
+  _setEventListeners = () => {
     this._view.querySelector('.elements__element-delete-button').addEventListener('click', this._removeCard);
     this._view.querySelector('.elements__element-like').addEventListener('click', this._likeCard);
+    this._view.querySelector('.elements__element-img').addEventListener('click', () => { this._handleImageClick() });
+
+    document.addEventListener('keydown', this._closeImageEscape);
   }
 }
 
-initialCards.forEach(element => {
-  const item = new Card(element);
-  elements.append(item._renderCard());
-})
-
-// const createCard = (...arg) => new Card(...arg);
-// const list = getView();
-// document.querySelector('.elements').append(list)
-
-
-
-// initialCards.forEach(element => {
-//   const item = new Card(element);
-//   elements.append(item.returnCard());
-// })
-
+export default Card;
