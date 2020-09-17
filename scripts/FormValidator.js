@@ -4,24 +4,53 @@ class FormValidator {
     this._formElement = formElement;
   }
 
-  enableValidation = (inputElement) => {
-    const forms = Array.from(document.querySelectorAll(this._data.formSelector));
-    forms.forEach((formElement) => {
-      formElement.addEventListener('submit', (evt) => {
-        evt.preventDefault();
-      })
-      this._inputsEvent(inputElement, formElement);
+  enableValidation = () => {
+    this._formElement.addEventListener('submit', (evt) => {
+      evt.preventDefault();
     })
+    this._inputsEvent();
+  }
+
+  cleanPopup = () => {
+    const popupError = document.querySelectorAll('.popup__error');
+    popupError.forEach((error) => {
+      error.classList.remove('popup__error_active');
+      error.classList.remove('popup__input-invalid');
+    });
+    const inputError = document.querySelectorAll('.popup__input');
+    inputError.forEach((error) => {
+      error.classList.remove('popup__input-invalid');
+    });
+  }
+
+  submitButtonActive = (btn) => {
+    btn.removeAttribute('disabled');
+    btn.classList.remove('popup__submit-button_disabled');
+  }
+
+  submitButtonNotActive = (btn) => {
+    btn.setAttribute('disabled', true);
+    btn.classList.add('popup__submit-button_disabled');
   }
 
   _inputsEvent = () => {
     const inputs = Array.from(this._formElement.querySelectorAll(this._data.inputSelector));
     inputs.forEach((inputElement) => {
-      inputElement.addEventListener('input', (evt) => {
-        this._toggleError(evt.target);
+      inputElement.addEventListener('input', () => {
+        this._toggleError(inputElement);
         this._toggleButton(inputs);
       });
     });
+  }
+
+  _toggleButton = (inputs) => {
+    const isFormValid = inputs.some((inputElement) => !inputElement.validity.valid);
+    const buttonSubmit = this._formElement.querySelector(this._data.submitButtonSelector);
+    if (!isFormValid) {
+      this.submitButtonActive(buttonSubmit);
+    } else {
+      this.submitButtonNotActive(buttonSubmit);
+    }
   }
 
   _addError = (inputElement, validationMessage) => {
@@ -39,32 +68,12 @@ class FormValidator {
     errorElement.classList.remove(this._data.errorClass);
   }
 
-  _toggleButton = (inputs) => {
-    const isFormValid = inputs.some((inputElement) => !inputElement.validity.valid);
-    const buttonSubmit = this._formElement.querySelector(this._data.submitButtonSelector);
-    if (!isFormValid) {
-      this._submitButtonActive(buttonSubmit);
-    } else {
-      this._submitButtonNotActive(buttonSubmit);
-    }
-  }
-
   _toggleError = (inputElement) => {
     if (inputElement.validity.valid) {
       this._deleteError(inputElement);
     } else {
       this._addError(inputElement, inputElement.validationMessage);
     }
-  }
-
-  _submitButtonActive = (btn) => {
-    btn.removeAttribute('disabled');
-    btn.classList.remove('popup__submit-button_disabled');
-  }
-
-  _submitButtonNotActive = (btn) => {
-    btn.setAttribute('disabled', true);
-    btn.classList.add('popup__submit-button_disabled');
   }
 }
 

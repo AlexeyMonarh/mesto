@@ -28,6 +28,18 @@ const initialCards = [
   }
 ];
 
+const popupValid = {
+  formSelector: '.popup__inputs',
+  inputSelector: '.popup__input',
+  inputInvalidClass: 'popup__input-invalid',
+  submitButtonSelector: '.popup__submit-button',
+  inactiveButtonClass: 'popup__submit-button_disabled',
+  errorClass: 'popup__error',
+  errorClassActive: 'popup__error_active'
+};
+
+const itemTemplate = document.querySelector('.elements__template');
+
 const addElementModal = document.querySelector('.popup_add-element');
 const editProfileModal = document.querySelector('.popup_edit-profile');
 const imageModal = document.querySelector('.popup_image');
@@ -51,31 +63,22 @@ const linkInput = addElement.querySelector('.popup__input-link');
 const openFormEdit = document.querySelector('.profile__info-edit-button');
 const openAddButton = document.querySelector('.profile__add-button');
 
-const elements = document.querySelector('.elements');
-
 const editProfileSubmitButton = editProfileModal.querySelector('.popup__submit-button');
 const addElementSubmitButton = addElementModal.querySelector('.popup__submit-button');
 
-initialCards.forEach(element => {
-  const item = new Card(element);
-  elements.append(item.renderCard());
-})
-
-const popupValid = {
-  formSelector: '.popup__inputs',
-  inputSelector: '.popup__input',
-  inputInvalidClass: 'popup__input-invalid',
-  submitButtonSelector: '.popup__submit-button',
-  inactiveButtonClass: 'popup__submit-button_disabled',
-  errorClass: 'popup__error',
-  errorClassActive: 'popup__error_active'
-};
+const elements = document.querySelector('.elements');
 
 const editValidation = new FormValidator(popupValid, popupInputs);
 const addValidation = new FormValidator(popupValid, addElement);
 
 editValidation.enableValidation();
 addValidation.enableValidation();
+
+initialCards.forEach((element) => {
+  const item = new Card(element, itemTemplate);
+  const items = item.renderCard();
+  elements.append(items);
+})
 
 const closeOverlay = () => {
   const overlay = document.querySelectorAll('.popup__overlay');
@@ -86,6 +89,12 @@ const closeOverlay = () => {
   });
 }
 closeOverlay();
+
+function addElementSubmitHandler(evt) {
+  evt.preventDefault();
+  elements.prepend(new Card({ name: placeInput.value, link: linkInput.value }, itemTemplate).renderCard());
+  togglePopup(addElementModal);
+}
 
 function formEsc(evt) {
   if (evt.key === "Escape") {
@@ -109,65 +118,35 @@ function formSubmitHandler(evt) {
   togglePopup(editProfileModal);
 }
 
-function addElementSubmitHandler(evt) {
-  evt.preventDefault();
-  const item = new Card(evt);
-  item._name = placeInput.value;
-  item._link = linkInput.value;
-  elements.append(item.renderCard());
-  togglePopup(addElementModal);
-}
-
-popupInputs.addEventListener('submit', formSubmitHandler);
-addElement.addEventListener('submit', addElementSubmitHandler);
-
-function cleanPopup() {
-  const popupError = document.querySelectorAll('.popup__error');
-  popupError.forEach((error) => {
-    error.classList.remove('popup__error_active');
-    error.classList.remove('popup__input-invalid');
-  });
-  const inputError = document.querySelectorAll('.popup__input');
-  inputError.forEach((error) => {
-    error.classList.remove('popup__input-invalid');
-  });
-}
+popupInputs.addEventListener('submit', formSubmitHandler)
+addElement.addEventListener('submit', addElementSubmitHandler)
 
 openFormEdit.addEventListener('click', () => {
-  submitButtonActive(editProfileSubmitButton);
+  editValidation.submitButtonActive(editProfileSubmitButton);
+  editValidation.cleanPopup();
   togglePopup(editProfileModal);
   nameInput.value = profileName.textContent;
   jobInput.value = profileStatus.textContent;
 })
 
 closeFormEdit.addEventListener('click', () => {
-  cleanPopup();
+  editValidation.cleanPopup();
   togglePopup(editProfileModal);
 })
 
 openAddButton.addEventListener('click', () => {
-  submitButtonNotActive(addElementSubmitButton);
+  editValidation.cleanPopup();
+  editValidation.submitButtonNotActive(addElementSubmitButton);
   togglePopup(addElementModal);
-  cleanPopup();
   placeInput.value = '';
   linkInput.value = '';
 })
 
 closeFormAdd.addEventListener('click', () => {
+  editValidation.cleanPopup();
   togglePopup(addElementModal);
-  cleanPopup();
 })
 
 closeFormImage.addEventListener('click', () => {
   togglePopup(imageModal);
 })
-
-function submitButtonActive(btn) {
-  btn.removeAttribute('disabled');
-  btn.classList.remove('popup__submit-button_disabled');
-}
-
-function submitButtonNotActive(btn) {
-  btn.setAttribute('disabled', true);
-  btn.classList.add('popup__submit-button_disabled');
-}
