@@ -63,13 +63,14 @@ const linkInput = addElement.querySelector('.popup__input-link');
 const openFormEdit = document.querySelector('.profile__info-edit-button');
 const openAddButton = document.querySelector('.profile__add-button');
 
-const editProfileSubmitButton = editProfileModal.querySelector('.popup__submit-button');
-const addElementSubmitButton = addElementModal.querySelector('.popup__submit-button');
+const submitButtonEdit = editProfileModal.querySelector('.popup__submit-button');
+const submitButtonAdd = addElementModal.querySelector('.popup__submit-button');
+
 
 const elements = document.querySelector('.elements');
 
-const editValidation = new FormValidator(popupValid, popupInputs);
-const addValidation = new FormValidator(popupValid, addElement);
+const editValidation = new FormValidator(popupValid, popupInputs, submitButtonEdit);
+const addValidation = new FormValidator(popupValid, addElement, submitButtonAdd);
 
 editValidation.enableValidation();
 addValidation.enableValidation();
@@ -122,7 +123,7 @@ popupInputs.addEventListener('submit', formSubmitHandler)
 addElement.addEventListener('submit', addElementSubmitHandler)
 
 openFormEdit.addEventListener('click', () => {
-  editValidation.submitButtonActive(editProfileSubmitButton);
+  editValidation.submitButtonActive();
   editValidation.cleanPopup();
   togglePopup(editProfileModal);
   nameInput.value = profileName.textContent;
@@ -136,7 +137,7 @@ closeFormEdit.addEventListener('click', () => {
 
 openAddButton.addEventListener('click', () => {
   editValidation.cleanPopup();
-  editValidation.submitButtonNotActive(addElementSubmitButton);
+  addValidation.submitButtonNotActive();
   togglePopup(addElementModal);
   placeInput.value = '';
   linkInput.value = '';

@@ -1,7 +1,8 @@
 class FormValidator {
-  constructor(data, formElement) {
+  constructor(data, formElement, buttonSubmit) {
     this._data = data;
     this._formElement = formElement;
+    this._buttonSubmit = buttonSubmit;
   }
 
   enableValidation = () => {
@@ -23,14 +24,14 @@ class FormValidator {
     });
   }
 
-  submitButtonActive = (btn) => {
-    btn.removeAttribute('disabled');
-    btn.classList.remove('popup__submit-button_disabled');
+  submitButtonActive = () => {
+    this._buttonSubmit.removeAttribute('disabled');
+    this._buttonSubmit.classList.remove('popup__submit-button_disabled');
   }
 
-  submitButtonNotActive = (btn) => {
-    btn.setAttribute('disabled', true);
-    btn.classList.add('popup__submit-button_disabled');
+  submitButtonNotActive = () => {
+    this._buttonSubmit.setAttribute('disabled', true);
+    this._buttonSubmit.classList.add('popup__submit-button_disabled');
   }
 
   _inputsEvent = () => {
@@ -45,11 +46,10 @@ class FormValidator {
 
   _toggleButton = (inputs) => {
     const isFormValid = inputs.some((inputElement) => !inputElement.validity.valid);
-    const buttonSubmit = this._formElement.querySelector(this._data.submitButtonSelector);
     if (!isFormValid) {
-      this.submitButtonActive(buttonSubmit);
+      this.submitButtonActive(this._buttonSubmit);
     } else {
-      this.submitButtonNotActive(buttonSubmit);
+      this.submitButtonNotActive(this._buttonSubmit);
     }
   }
 

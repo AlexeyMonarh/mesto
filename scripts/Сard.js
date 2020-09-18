@@ -27,13 +27,11 @@ class Card {
     document.querySelector('.popup_image').classList.add('popup_open');
     document.querySelector('.popup__title').textContent = this._name;
     document.querySelector('.popup__image').src = this._link;
-    document.addEventListener('keydown', this._closeImageEscape);
-  }
-
-  _closeImageEscape = (evt) => {
-    if (evt.key === "Escape") {
-      document.querySelector('.popup_image').classList.remove('popup_open');
-    }
+    document.addEventListener('keydown', (evt) => {
+      if (evt.key === "Escape") {
+        document.querySelector('.popup_image').classList.remove('popup_open');
+      }
+    });
   }
 
   _setEventListeners = () => {
