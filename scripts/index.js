@@ -106,9 +106,9 @@ function formEsc(evt) {
 function togglePopup(form) {
   form.classList.toggle('popup_open');
   if (form.classList.contains('popup_open')) {
-    addEventListener('keydown', formEsc);
+    document.addEventListener('keydown', formEsc);
   } else {
-    removeEventListener('keydown', formEsc);
+    document.removeEventListener('keydown', formEsc);
   }
 }
 

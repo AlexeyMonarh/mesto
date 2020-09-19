@@ -1,7 +1,7 @@
 class Card {
   constructor(element, itemTemp) {
     this._name = element.name;
-    this._link = element.link;  
+    this._link = element.link;
     this._itemTemp = itemTemp;
   }
 
@@ -11,16 +11,22 @@ class Card {
     this._view.querySelector('.elements__element-title').textContent = this._name;
     this._view.querySelector('.elements__element-img').src = this._link;
     this._setEventListeners();
-  
+
     return this._view;
   }
-  
+
   _removeCard = () => {
     this._view.remove();
   }
 
   _likeCard = () => {
     this._view.querySelector('.elements__element-like').classList.toggle('elements__element-like_active');
+  }
+
+  _closeImageEscape = (evt) => {
+    if (evt.key === "Escape") {
+      document.querySelector('.popup_image').classList.remove('popup_open');
+    }
   }
 
   _handleImageClick = () => {
@@ -30,6 +36,7 @@ class Card {
     document.addEventListener('keydown', (evt) => {
       if (evt.key === "Escape") {
         document.querySelector('.popup_image').classList.remove('popup_open');
+        document.removeEventListener('keydown', this._closeImageEscape);
       }
     });
   }
@@ -38,6 +45,7 @@ class Card {
     this._view.querySelector('.elements__element-delete-button').addEventListener('click', this._removeCard);
     this._view.querySelector('.elements__element-like').addEventListener('click', this._likeCard);
     this._view.querySelector('.elements__element-img').addEventListener('click', () => { this._handleImageClick() });
+    document.removeEventListener('keydown', this._closeImageEscape);
   }
 }
 
