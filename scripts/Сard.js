@@ -26,6 +26,7 @@ class Card {
   _closeImageEscape = (evt) => {
     if (evt.key === "Escape") {
       document.querySelector('.popup_image').classList.remove('popup_open');
+      document.removeEventListener('keydown', this._closeImageEscape);
     }
   }
 
@@ -33,19 +34,13 @@ class Card {
     document.querySelector('.popup_image').classList.add('popup_open');
     document.querySelector('.popup__title').textContent = this._name;
     document.querySelector('.popup__image').src = this._link;
-    document.addEventListener('keydown', (evt) => {
-      if (evt.key === "Escape") {
-        document.querySelector('.popup_image').classList.remove('popup_open');
-        document.removeEventListener('keydown', this._closeImageEscape);
-      }
-    });
+    document.addEventListener('keydown', this._closeImageEscape);
   }
 
   _setEventListeners = () => {
     this._view.querySelector('.elements__element-delete-button').addEventListener('click', this._removeCard);
     this._view.querySelector('.elements__element-like').addEventListener('click', this._likeCard);
     this._view.querySelector('.elements__element-img').addEventListener('click', () => { this._handleImageClick() });
-    document.removeEventListener('keydown', this._closeImageEscape);
   }
 }
 
