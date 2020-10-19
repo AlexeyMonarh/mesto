@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,80 +12,88 @@
 </head>
 
 <body class="page">
-<header class="header">
-  <img src="./images/vector/logo.svg" alt="Лого (Место - Россия)" class="header__logo">
-</header>
-<main class="content">
-<section class="profile">
-  <img src="./images/kusto.png" alt="Фото Жак-Ив Кусто" class="profile__avatar">
-  <div class="profile__info">
-    <div class="profile__info-content">
-    <h1 class="profile__info-name">Жак-Ив Кусто</h1>
-    <p class="profile__info-status">Исследователь океана</p>
+  <header class="header">
+    <img src="./images/vector/logo.svg" alt="Лого (Место - Россия)" class="header__logo">
+  </header>
+  <main class="content">
+    <section class="profile">
+      <img src="./images/kusto.png" alt="Фото Жак-Ив Кусто" class="profile__avatar">
+      <div class="profile__info">
+        <div class="profile__info-content">
+          <h1 class="profile__info-name">Жак-Ив Кусто</h1>
+          <p class="profile__info-status">Исследователь океана</p>
+        </div>
+        <button class="profile__info-edit-button"></button>
+      </div>
+      <button class="profile__add-button"></button>
+    </section>
+    <section>
+      <ul class="elements">
+      </ul>
+    </section>
+  </main>
+  <footer class="footer">
+    <img src="./images/vector/mesto_Russia.svg" alt="2020_Место_Россия">
+  </footer>
+
+  <div class="popup popup_edit-profile">
+    <div class="popup__overlay"></div>
+    <div class="popup__container">
+      <button class="popup__close-icon"></button>
+      <form action="#" class="popup__inputs" name="popup" novalidate>
+        <h2 class="popup__heading">Редактировать профиль</h2>
+        <input type="text" class="popup__input popup__input-name" value="" placeholder="Имя" name="name" required
+          minlength="2" maxlength="40" autocomplete="off">
+        <span class="popup__error" id="name-error"></span>
+        <input type="text" class="popup__input popup__input-job" value="" placeholder="О себе" name="job" required
+          minlength="2" maxlength="200" autocomplete="off">
+        <span class="popup__error" id="job-error"></span>
+        <button type="submit" class="popup__submit-button popup__submit-button_disabled" disabled>Сохранить</button>
+      </form>
     </div>
-    <button class="profile__info-edit-button"></button>
   </div>
-  <button class="profile__add-button"></button>
-</section>
-<section>
-  <ul class="elements">
-  </ul>
-</section>
-</main>
-<footer class="footer">
-  <img src="./images/vector/mesto_Russia.svg" alt="2020_Место_Россия">
-</footer>
 
-<div class="popup popup_edit-profile">
-  <div class="popup__overlay"></div>
-  <div class="popup__container">
-    <button class="popup__close-icon"></button>
-        <form action="#" class="popup__inputs" name="popup" novalidate>
-          <h2 class="popup__heading">Редактировать профиль</h2>
-          <input type="text" class="popup__input popup__input-name" value="" placeholder="Имя" name="name" required minlength="2" maxlength="40" autocomplete="off">
-          <span class="popup__error" id="name-error"></span>
-          <input type="text" class="popup__input popup__input-job" value="" placeholder="О себе" name="job" required minlength="2" maxlength="200" autocomplete="off">
-          <span class="popup__error" id="job-error"></span>
-          <button type="submit" class="popup__submit-button popup__submit-button_disabled" disabled>Сохранить</button>
-        </form>   
-  </div>
-</div>
-
-<div class="popup popup_add-element">
-  <div class="popup__overlay"></div>
-  <div class="popup__container">
-    <button class="popup__close-icon"></button>
-        <form action="#" class="popup__inputs" name="popup" novalidate>
-          <h2 class="popup__heading">Новое место</h2>
-          <input type="text" class="popup__input popup__input-place" value="" placeholder="Название" name="place" required minlength="1" maxlength="30" autocomplete="off">
-          <span class="popup__error" id="place-error"></span>
-          <input type="url" class="popup__input popup__input-link" value="" placeholder="Ссылка на картинку" name="link" required autocomplete="off">
-          <span class="popup__error" id="link-error"></span> 
-          <button type="submit" class="popup__submit-button popup__submit-button_disabled" disabled>Создать</button>   
-        </form>        
-  </div>
-</div>
-
-<div class="popup popup_image popup_image-background">
-  <div class="popup__overlay"></div>
-  <div class="popup__container popup__container_image">
-    <button class="popup__close-icon"></button>
-    <img src="" alt="Места-России" class="popup__image">
-    <h5 class="popup__title"></h5>
-  </div>
-</div>
-
-<template class="elements__template">
-  <li class="elements__element">
-    <button type="submit" class="elements__element-delete-button"></button>
-    <img src="" alt="Места-России" class="elements__element-img">
-    <div class="elements__element-description">
-      <h2 class="elements__element-title"></h2>
-      <button type="submit" class="elements__element-like"></button>
+  <div class="popup popup_add-element">
+    <div class="popup__overlay"></div>
+    <div class="popup__container">
+      <button class="popup__close-icon"></button>
+      <form action="#" class="popup__inputs" name="popup" novalidate>
+        <h2 class="popup__heading">Новое место</h2>
+        <input type="text" class="popup__input popup__input-place" value="" placeholder="Название" name="place" required
+          minlength="1" maxlength="30" autocomplete="off">
+        <span class="popup__error" id="place-error"></span>
+        <input type="url" class="popup__input popup__input-link" value="" placeholder="Ссылка на картинку" name="link"
+          required autocomplete="off">
+        <span class="popup__error" id="link-error"></span>
+        <button type="submit" class="popup__submit-button popup__submit-button_disabled" disabled>Создать</button>
+      </form>
     </div>
-  </li>
-</template>
+  </div>
 
-<script src="./scripts/index.js" defer type="module"></script>
+  <div class="popup popup_image popup_image-background">
+    <div class="popup__overlay"></div>
+    <div class="popup__container popup__container_image">
+      <button class="popup__close-icon"></button>
+      <img src="" alt="Места-России" class="popup__image">
+      <h5 class="popup__title"></h5>
+    </div>
+  </div>
+
+  <template class="elements__template">
+    <li class="elements__element">
+      <button type="submit" class="elements__element-delete-button"></button>
+      <img src="" alt="Места-России" class="elements__element-img">
+      <div class="elements__element-description">
+        <h2 class="elements__element-title"></h2>
+        <button type="submit" class="elements__element-like"></button>
+      </div>
+    </li>
+  </template>
+
+
+  <div class="hdfsdhf"></div>
+
+  <script src="./scripts/index.js" defer type="module"></script>
 </body>
+
 </html>
