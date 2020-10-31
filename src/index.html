@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Проектная работа №7">
+  <meta name="description" content="Проектная работа №8">
   <meta name="keywords" content="место Россия, Жак-Ив Кусто, иследователь океана, Карачаевск, гора Эльбрус, Домбай">
   <meta name="autor" content="Алексей Сахневич">
-  <link rel="stylesheet" href="./pages/index.css">
+  
   <title>Место "РОССИЯ"</title>
 </head>
 
@@ -45,9 +45,9 @@
         <input type="text" class="popup__input popup__input-name" value="" placeholder="Имя" name="name" required
           minlength="2" maxlength="40" autocomplete="off">
         <span class="popup__error" id="name-error"></span>
-        <input type="text" class="popup__input popup__input-job" value="" placeholder="О себе" name="job" required
+        <input type="text" class="popup__input popup__input-job" value="" placeholder="О себе" name="link" required
           minlength="2" maxlength="200" autocomplete="off">
-        <span class="popup__error" id="job-error"></span>
+        <span class="popup__error" id="link-error"></span>
         <button type="submit" class="popup__submit-button popup__submit-button_disabled" disabled>Сохранить</button>
       </form>
     </div>
@@ -59,9 +59,9 @@
       <button class="popup__close-icon"></button>
       <form action="#" class="popup__inputs" name="popup" novalidate>
         <h2 class="popup__heading">Новое место</h2>
-        <input type="text" class="popup__input popup__input-place" value="" placeholder="Название" name="place" required
+        <input type="text" class="popup__input popup__input-place" value="" placeholder="Название" name="name" required
           minlength="1" maxlength="30" autocomplete="off">
-        <span class="popup__error" id="place-error"></span>
+        <span class="popup__error" id="name-error"></span>
         <input type="url" class="popup__input popup__input-link" value="" placeholder="Ссылка на картинку" name="link"
           required autocomplete="off">
         <span class="popup__error" id="link-error"></span>
@@ -74,7 +74,7 @@
     <div class="popup__overlay"></div>
     <div class="popup__container popup__container_image">
       <button class="popup__close-icon"></button>
-      <img src="" alt="Места-России" class="popup__image">
+      <img src="#" alt="Места-России" class="popup__image">
       <h5 class="popup__title"></h5>
     </div>
   </div>
@@ -82,7 +82,7 @@
   <template class="elements__template">
     <li class="elements__element">
       <button type="submit" class="elements__element-delete-button"></button>
-      <img src="" alt="Места-России" class="elements__element-img">
+      <img src="#" alt="Места-России" class="elements__element-img">
       <div class="elements__element-description">
         <h2 class="elements__element-title"></h2>
         <button type="submit" class="elements__element-like"></button>
@@ -90,7 +90,6 @@
     </li>
   </template>
 
-  <script src="./scripts/index.js" defer type="module"></script>
 </body>
 
 </html>

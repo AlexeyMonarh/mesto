@@ -5,14 +5,14 @@ class FormValidator {
     this._buttonSubmit = buttonSubmit;
   }
 
-  enableValidation = () => {
+  enableValidation() {
     this._formElement.addEventListener('submit', (evt) => {
       evt.preventDefault();
     })
     this._inputsEvent();
   }
 
-  cleanPopup = () => {
+  cleanPopup() {
     const popupError = document.querySelectorAll('.popup__error');
     popupError.forEach((error) => {
       error.classList.remove('popup__error_active');
@@ -24,17 +24,17 @@ class FormValidator {
     });
   }
 
-  submitButtonActive = () => {
+  submitButtonActive() {
     this._buttonSubmit.removeAttribute('disabled');
     this._buttonSubmit.classList.remove('popup__submit-button_disabled');
   }
 
-  submitButtonNotActive = () => {
+  submitButtonNotActive() {
     this._buttonSubmit.setAttribute('disabled', true);
     this._buttonSubmit.classList.add('popup__submit-button_disabled');
   }
 
-  _inputsEvent = () => {
+  _inputsEvent() {
     const inputs = Array.from(this._formElement.querySelectorAll(this._data.inputSelector));
     inputs.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
@@ -44,7 +44,7 @@ class FormValidator {
     });
   }
 
-  _toggleButton = (inputs) => {
+  _toggleButton(inputs) {
     const isFormValid = inputs.some((inputElement) => !inputElement.validity.valid);
     if (!isFormValid) {
       this.submitButtonActive(this._buttonSubmit);
@@ -53,7 +53,7 @@ class FormValidator {
     }
   }
 
-  _addError = (inputElement, validationMessage) => {
+  _addError(inputElement, validationMessage) {
     const errorElement = this._formElement.querySelector(`#${inputElement.name}-error`);
     inputElement.classList.add(this._data.inputInvalidClass);
     errorElement.textContent = validationMessage;
@@ -61,14 +61,14 @@ class FormValidator {
     errorElement.classList.add(this._data.errorClassActive);
   }
 
-  _deleteError = (inputElement) => {
+  _deleteError(inputElement) {
     const errorElement = this._formElement.querySelector(`#${inputElement.name}-error`);
     inputElement.classList.remove(this._data.inputInvalidClass);
     errorElement.textContent = '';
     errorElement.classList.remove(this._data.errorClass);
   }
 
-  _toggleError = (inputElement) => {
+  _toggleError(inputElement) {
     if (inputElement.validity.valid) {
       this._deleteError(inputElement);
     } else {
