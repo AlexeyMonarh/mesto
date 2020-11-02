@@ -6,12 +6,19 @@ class Card {
     this._openImagePopup = openImagePopup;
   }
 
-  renderCard() {
+  _getTemplate() {
     const itemTemplate = this._itemTemp.content.children[0];
     this._view = itemTemplate.cloneNode(true);
-    this._view.querySelector('.elements__element-title').textContent = this._name;
-    this._view.querySelector('.elements__element-img').src = this._link;
-    this._view.querySelector('.elements__element-img').alt = this._name;
+
+    return this._view;
+  }
+
+  renderCard() {
+    this._getTemplate();
+    this._view.querySelector('.elements__element-title').textContent = this._name
+    const elementImg = this._view.querySelector('.elements__element-img');
+    elementImg.src = this._link;
+    elementImg.alt = this._name;
     this._setEventListeners();
 
     return this._view;
@@ -19,6 +26,7 @@ class Card {
 
   _removeCard() {
     this._view.remove();
+    this._view = null;
   }
 
   _likeCard() {

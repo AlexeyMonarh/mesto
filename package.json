@@ -4,7 +4,7 @@
   "description": "## Описание проекта *В этом проекте использованы современные методы и подходы разработки сайтов.  Представленные способы реализации проекта максимально упрощают и облегчают задачу для разработчика. В основу проекта легли следующие технологии:* ### CSS * Flexbox * Grid",
   "main": "index.js",
   "scripts": {
-    "build": "rm -rf dist && webpack --mode production",
+    "build": "rimraf dist && webpack --mode production",
     "dev": "webpack-dev-server"
   },
   "repository": {
