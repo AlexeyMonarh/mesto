@@ -17,7 +17,7 @@ export default class PopupWithForm extends Popup {
   }
 
   setEventListeners() {
-    super.setEventListeners();
+    super.setEventListener();
     const setAddCard = this._popupSelector.querySelector('.popup__inputs');
     setAddCard.addEventListener('submit', (evt) => {
       evt.preventDefault();
@@ -26,7 +26,7 @@ export default class PopupWithForm extends Popup {
   }
 
   close() {
-    super.close();
+    super.closes();
     this._popupForm.reset();
   }
 }

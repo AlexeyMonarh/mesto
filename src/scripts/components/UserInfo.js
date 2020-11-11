@@ -4,7 +4,7 @@ export default class UserInfo {
     this._infoUser = infoUser;
   }
 
-  getUserInfo() {
+  getUserInfo(avatar) {
     const userName = this._nameUser.textContent;
     const userInfo = this._infoUser.textContent;
     const editProfile = {

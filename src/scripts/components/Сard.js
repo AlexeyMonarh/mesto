@@ -13,9 +13,10 @@ class Card {
     return this._view;
   }
 
+
   renderCard() {
     this._getTemplate();
-    this._view.querySelector('.elements__element-title').textContent = this._name
+    this._view.querySelector('.elements__element-title').textContent = this._name;
     const elementImg = this._view.querySelector('.elements__element-img');
     elementImg.src = this._link;
     elementImg.alt = this._name;
@@ -24,18 +25,26 @@ class Card {
     return this._view;
   }
 
-  _removeCard() {
+  removeCard() {
     this._view.remove();
-    this._view = null;
   }
 
-  _likeCard() {
-    this._view.querySelector('.elements__element-like').classList.toggle('elements__element-like_active');
+  likeCard() {
+    const btn = this._view.querySelector('.elements__element-like');
+    let like = true,
+      likeCount = this._view.querySelector('.elements__element-likes').innerHTML;
+
+    btn.addEventListener('click', () => {
+      likeCount = like ? ++likeCount : --likeCount;
+      like = !like;
+      this._view.querySelector('.elements__element-likes').innerHTML = likeCount;
+      this._view.querySelector('.elements__element-like').classList.toggle('elements__element-like_active');
+    });
   }
 
   _setEventListeners() {
-    this._view.querySelector('.elements__element-delete-button').addEventListener('click', () => { this._removeCard() });
-    this._view.querySelector('.elements__element-like').addEventListener('click', () => { this._likeCard() });
+    // this._view.querySelector('.elements__element-delete-button').addEventListener('click', () => { this._removeCard() });
+    // this._view.querySelector('.elements__element-like').addEventListener('click', () => { this._likeCard() });
     this._view.querySelector('.elements__element-img').addEventListener('click', () => { this._openImagePopup(this._name, this._link) });
   }
 }

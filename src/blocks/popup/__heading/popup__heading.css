@@ -6,6 +6,10 @@
   margin-bottom: 40px;
 }
 
+.popup__heading_delete-card {
+  margin-bottom: 0;
+}
+
 @media screen and (max-width: 375px) {
   .popup__heading {
     font-size: 18px;

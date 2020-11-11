@@ -4,6 +4,8 @@
  @import url('./__element-description/elements__element-description.css');
  @import url('./__element-title/elements__element-title.css');
  @import url('./__element-like/elements__element-like.css');
+ @import url('./__element-likes/elements__element-likes.css');
+ @import url('./__element-like-box/elements__element-like-box.css');
 
  .elements {
    margin: 0 auto;
