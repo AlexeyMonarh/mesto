@@ -1,11 +1,11 @@
 export default class Section {
-  constructor({renderer}, containerSelector) {
+  constructor({ renderer }, containerSelector) {
     this._renderer = renderer;
     this._containerSelector = containerSelector;
   }
 
   renderItem(data) {
-    data.map((item) => {this._renderer(item)});
+    data.map((item) => { this._renderer(item) });
   }
 
   addItem(card) {

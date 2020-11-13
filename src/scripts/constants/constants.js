@@ -8,11 +8,13 @@ export const popupValid = {
   errorClassActive: 'popup__error_active'
 };
 
+export const elements = document.querySelector('.elements');
 export const itemTemplate = document.querySelector('.elements__template');
 
 export const addElementModal = document.querySelector('.popup_add-element');
 export const editProfileModal = document.querySelector('.popup_edit-profile');
 export const editAvatarModal = document.querySelector('.popup_edit-avatar');
+export const popupDeleteCard = document.querySelector('.popup_remove-card')
 
 export const imageModal = document.querySelector('.popup_image');
 
@@ -24,6 +26,7 @@ export const closeFormAdd = addElementModal.querySelector('.popup__close-icon');
 export const closeFormEdit = editProfileModal.querySelector('.popup__close-icon');
 export const closeFormImage = imageModal.querySelector('.popup__close-icon');
 
+export const profile = document.querySelector('.profile__info');
 export const profileName = document.querySelector('.profile__info-name');
 export const profileStatus = document.querySelector('.profile__info-status');
 
@@ -39,8 +42,7 @@ export const openAddButton = document.querySelector('.profile__add-button');
 export const submitButtonEdit = editProfileModal.querySelector('.popup__submit-button');
 export const submitButtonAdd = addElementModal.querySelector('.popup__submit-button');
 export const submitButtonAvatar = editAvatarModal.querySelector('.popup__submit-button');
-
-export const elements = document.querySelector('.elements');
+export const buttonDeleteCard = popupDeleteCard.querySelector('.popup__submit-button');
 
 export const openAvatarEdit = document.querySelector('.profile__avatar-hover');
 export const insertImgAvatar = openAvatarEdit.querySelector('.profile__avatar');

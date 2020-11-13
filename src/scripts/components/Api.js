@@ -72,13 +72,12 @@ export default class Api {
     })
   }
 
-  plusLike() {
-    return fetch(this._baseUrl + '/cards/likes/cardId', {
-      method: 'PUT',
+  deleteCard(userId) {
+    return fetch(`${this._baseUrl}/cards/${userId}`, {
+      method: 'DELETE',
       headers: this._headers,
       body: JSON.stringify({
-        name: element.name,
-        link: element.link,
+        _id: userId,
       })
     }).then(res => {
       if (res.ok) {
@@ -87,4 +86,35 @@ export default class Api {
       return Promise.reject(`Ошибка: ${res.status}`);
     })
   }
+
+  plusLike(userId) {
+    return fetch(`${this._baseUrl}/cards/likes/${userId}`, {
+      method: 'PUT',
+      headers: this._headers,
+      body: JSON.stringify({
+        _id: userId,
+      })
+    }).then(res => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Ошибка: ${res.status}`);
+    })
+  }
+
+  deleteLike(userId) {
+    return fetch(`${this._baseUrl}/cards/likes/${userId}`, {
+      method: 'DELETE',
+      headers: this._headers,
+      body: JSON.stringify({
+        _id: userId,
+      })
+    }).then(res => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Ошибка: ${res.status}`);
+    })
+  }
+
 }

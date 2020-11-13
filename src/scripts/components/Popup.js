@@ -11,7 +11,7 @@ export default class Popup {
 
   closes() {
     this._popupSelector.classList.remove('popup_open');
-    document.addEventListener('keyup', this._handleEscClose);
+    document.removeEventListener('keyup', this._handleEscClose);
   }
 
   _closeOverlay() {
