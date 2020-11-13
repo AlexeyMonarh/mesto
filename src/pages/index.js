@@ -25,20 +25,14 @@ const api = new Api({
   }
 })
 
-api.getUser()
-  .then((res) => {
-    profile.id = res._id;
-    insertImgAvatar.src = res.avatar;
-    editInfo.setUserInfo(res.name, res.about, res.avatar);
-  }).catch((res) => {
-    console.log(`Ошибка: ${res.status}`);
-  })
-
-api.getInitialCards()
-  .then((data) => {
+Promise.all([api.getInitialCards(), api.getUser()])
+  .then(([data, res]) => {
     const element = data.map(({ name, link, owner, _id, likes }) => ({ name, link, owner, _id, likes }));
     renderCard.renderItem(element);
-  }).catch((res) => {
+    profile.id = res._id;
+    insertImgAvatar.src = res.avatar;
+    editInfo.setUserInfo(res.name, res.about, res.avatar)
+  }).catch(() => {
     console.log(`Ошибка: ${res.status}`);
   })
 
@@ -107,7 +101,7 @@ closeFormEdit.addEventListener('click', () => {
 })
 
 openAddButton.addEventListener('click', () => {
-  addValidation.cleanPopup();
+  editValidation.cleanPopup();
   addValidation.submitButtonNotActive();
   addCardPopup.open();
   addCardPopup.uxButtonClear();
@@ -123,7 +117,7 @@ openFormEdit.addEventListener('click', () => {
 })
 
 openAvatarEdit.addEventListener('click', () => {
-  editAvatarValidation.cleanPopup();
+  editValidation.cleanPopup();
   editAvatarValidation.submitButtonNotActive();
   avatarEditPopup.open();
   avatarEditPopup.uxButtonClear();

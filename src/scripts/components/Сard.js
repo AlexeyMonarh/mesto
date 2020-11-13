@@ -36,7 +36,7 @@ class Card {
   _removeCard() {
     this._api.deleteCard(this._element._id);
     this._view.remove();
-    // this._view = null;
+    this._view = null;
   }
 
   _likeCard() {
@@ -68,8 +68,8 @@ class Card {
   _setEventListeners() {
     this._view.querySelector('.elements__element-delete-button').addEventListener('click', () => {
       this._deleteCardPopup.open(
-        this._buttonDeleteCard.addEventListener('click', () => { this._removeCard(); this._deleteCardPopup.closes() })   
-        )
+        this._buttonDeleteCard.addEventListener('click', () => { this._removeCard(); this._deleteCardPopup.closes() })
+      )
     });
     this._view.querySelector('.elements__element-img').addEventListener('click', () => { this._openImagePopup(this._name, this._link) });
   }

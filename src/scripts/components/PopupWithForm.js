@@ -29,8 +29,8 @@ export default class PopupWithForm extends Popup {
     const setAddCard = this._popupSelector.querySelector('.popup__inputs');
     setAddCard.addEventListener('submit', (evt) => {
       evt.preventDefault();
-      this._uxButton();
       this._handleFormSubmit(this._getInputValues());
+      this._uxButton();
     });
   }
 
