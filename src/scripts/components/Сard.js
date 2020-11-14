@@ -1,12 +1,12 @@
 class Card {
-  constructor(element, itemTemp, openImagePopup, api, deleteCardPopup, buttonDeleteCard, profileId) {
+  constructor(element, itemTemp, openImagePopup, api, deleteCardPopup, buttonDeleteCard) {
     this._name = element.name;
     this._link = element.link;
     this._element = element;
     this._itemTemp = itemTemp;
     this._openImagePopup = openImagePopup;
     this._api = api;
-    this._myId = profileId.id;
+    this._myId = itemTemp.id;
     this._deleteCardPopup = deleteCardPopup;
     this._buttonDeleteCard = buttonDeleteCard;
     this._likes = element.likes;
@@ -36,7 +36,6 @@ class Card {
   _removeCard() {
     this._api.deleteCard(this._element._id);
     this._view.remove();
-    this._view = null;
   }
 
   _likeCard() {
@@ -61,7 +60,6 @@ class Card {
     if (this._element.owner._id !== this._myId) {
       this._view.querySelector('.elements__element-delete-button').remove();
     }
-
     return this._view;
   }
 

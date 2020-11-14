@@ -1,3 +1,10 @@
+const thenApi = (res) => {
+  if (res.ok) {
+    return res.json();
+  }
+  return Promise.reject(`Ошибка: ${res.status}`);
+}
+
 export default class Api {
   constructor(options) {
     this._baseUrl = options.baseUrl;
@@ -8,21 +15,13 @@ export default class Api {
   getInitialCards() {
     return fetch(this._baseUrl + '/cards', {
       headers: this._headers
-    }).then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-    })
+    }).then(thenApi)
   }
 
   getUser() {
     return fetch(this._baseUrl + '/users/me', {
       headers: this._headers
-    }).then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-    })
+    }).then(thenApi)
   }
 
   setUserInfo(name, about) {
@@ -33,11 +32,6 @@ export default class Api {
         name: name,
         about: about,
       })
-    }).then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
     })
   }
 
@@ -48,11 +42,6 @@ export default class Api {
       body: JSON.stringify({
         avatar: avatar,
       })
-    }).then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
     })
   }
 
@@ -64,12 +53,7 @@ export default class Api {
         name: element.name,
         link: element.link,
       })
-    }).then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
-    })
+    }).then(thenApi)
   }
 
   deleteCard(userId) {
@@ -79,12 +63,7 @@ export default class Api {
       body: JSON.stringify({
         _id: userId,
       })
-    }).then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
-    })
+    }).then(thenApi)
   }
 
   plusLike(userId) {
@@ -94,12 +73,7 @@ export default class Api {
       body: JSON.stringify({
         _id: userId,
       })
-    }).then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
-    })
+    }).then(thenApi)
   }
 
   deleteLike(userId) {
@@ -109,12 +83,7 @@ export default class Api {
       body: JSON.stringify({
         _id: userId,
       })
-    }).then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
-    })
+    }).then(thenApi)
   }
 
 }

@@ -10,10 +10,6 @@ export default class PopupWithForm extends Popup {
     this._popupSelector.querySelector('.popup__submit-button').textContent = 'Сохранение...';
   }
 
-  uxButtonClear() {
-    this._popupSelector.querySelector('.popup__submit-button').textContent = this._buttonDefault;
-  }
-
   _getInputValues() {
     this._inputList = this._popupSelector.querySelectorAll('.popup__input');
     this._formValues = {};
@@ -24,6 +20,14 @@ export default class PopupWithForm extends Popup {
     return this._formValues;
   }
 
+  uxButtonClear() {
+    this._popupSelector.querySelector('.popup__submit-button').textContent = this._buttonDefault;
+  }
+
+  resetForm() {
+    this._popupForm.reset();
+  }
+
   setEventListeners() {
     super.setEventListener();
     const setAddCard = this._popupSelector.querySelector('.popup__inputs');
@@ -32,10 +36,5 @@ export default class PopupWithForm extends Popup {
       this._handleFormSubmit(this._getInputValues());
       this._uxButton();
     });
-  }
-
-  close() {
-    super.closes();
-    this._popupForm.reset();
   }
 }

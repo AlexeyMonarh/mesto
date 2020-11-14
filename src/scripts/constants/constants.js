@@ -26,7 +26,6 @@ export const closeFormAdd = addElementModal.querySelector('.popup__close-icon');
 export const closeFormEdit = editProfileModal.querySelector('.popup__close-icon');
 export const closeFormImage = imageModal.querySelector('.popup__close-icon');
 
-export const profile = document.querySelector('.profile__info');
 export const profileName = document.querySelector('.profile__info-name');
 export const profileStatus = document.querySelector('.profile__info-status');
 

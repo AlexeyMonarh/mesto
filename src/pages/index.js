@@ -8,7 +8,7 @@ import PopupWithImage from '../scripts/components/PopupWithImage.js';
 import PopupWithForm from '../scripts/components/PopupWithForm.js';
 import UserInfo from '../scripts/components/UserInfo.js';
 
-import { popupValid, itemTemplate, popupInputs, addElement, closeFormEdit, profileName, profileStatus, nameInput, jobInput, openFormEdit, openAddButton, submitButtonEdit, submitButtonAdd, elements, openAvatarEdit, submitButtonAvatar, editAvatar, linkInputAvatar, insertImgAvatar, buttonDeleteCard, profile } from '../scripts/constants/constants.js';
+import { popupValid, itemTemplate, popupInputs, addElement, closeFormEdit, profileName, profileStatus, nameInput, jobInput, openFormEdit, openAddButton, submitButtonEdit, submitButtonAdd, elements, openAvatarEdit, submitButtonAvatar, editAvatar, linkInputAvatar, insertImgAvatar, buttonDeleteCard } from '../scripts/constants/constants.js';
 
 const editValidation = new FormValidator(popupValid, popupInputs, submitButtonEdit);
 const addValidation = new FormValidator(popupValid, addElement, submitButtonAdd);
@@ -25,13 +25,14 @@ const api = new Api({
   }
 })
 
-Promise.all([api.getInitialCards(), api.getUser()])
-  .then(([data, res]) => {
+Promise.all([api.getUser(), api.getInitialCards() ])
+  .then(([res, data]) => {
+    itemTemplate.id = res._id;
+    insertImgAvatar.src = res.avatar;
+    editInfo.setUserInfo(res.name, res.about, res.avatar);
     const element = data.map(({ name, link, owner, _id, likes }) => ({ name, link, owner, _id, likes }));
     renderCard.renderItem(element);
-    profile.id = res._id;
-    insertImgAvatar.src = res.avatar;
-    editInfo.setUserInfo(res.name, res.about, res.avatar)
+    
   }).catch(() => {
     console.log(`Ошибка: ${res.status}`);
   })
@@ -43,7 +44,7 @@ const renderCard = new Section({
 }, elements)
 
 const createCard = (element) => {
-  const item = new Card(element, itemTemplate, openImagePopup, api, deleteCardPopup, buttonDeleteCard, profile);
+  const item = new Card(element, itemTemplate, openImagePopup, api, deleteCardPopup, buttonDeleteCard);
   const items = item.renderCard();
   renderCard.addItem(items);
 }
@@ -59,9 +60,10 @@ deleteCardPopup.setEventListener();
 const editUserInfoPopup = new PopupWithForm({
   popupSelector: '.popup_edit-profile',
   handleFormSubmit: () => {
-    api.setUserInfo(nameInput.value, jobInput.value);
+    api.setUserInfo(nameInput.value, jobInput.value)
+      .then(thenRes);
     editInfo.setUserInfo(nameInput.value, jobInput.value);
-    editUserInfoPopup.close();
+    editUserInfoPopup.closes();
   }
 })
 editUserInfoPopup.setEventListeners();
@@ -69,9 +71,10 @@ editUserInfoPopup.setEventListeners();
 const avatarEditPopup = new PopupWithForm({
   popupSelector: '.popup_edit-avatar',
   handleFormSubmit: () => {
+    api.setAvatar(linkInputAvatar.value)
+      .then(thenRes);
+    avatarEditPopup.closes();
     insertImgAvatar.src = linkInputAvatar.value;
-    api.setAvatar(linkInputAvatar.value);
-    avatarEditPopup.close();
   }
 })
 avatarEditPopup.setEventListeners();
@@ -82,8 +85,8 @@ const addCardPopup = new PopupWithForm({
     api.createNewCard(element)
       .then((newCard) => {
         createCard(newCard);
-        addCardPopup.close();
       })
+    addCardPopup.closes();
   }
 })
 addCardPopup.setEventListeners();
@@ -91,13 +94,21 @@ addCardPopup.setEventListeners();
 const popupImageBig = new PopupWithImage('.popup_image');
 popupImageBig.setEventListener();
 
+const thenRes = (res) => {
+  if (res.ok) {
+    return res.json();
+  }
+  return Promise.reject(`Ошибка: ${res.status}`);
+}
+
+
 const openImagePopup = (name, link) => {
   popupImageBig.open(name, link);
-};
+}
 
 closeFormEdit.addEventListener('click', () => {
   editValidation.cleanPopup();
-  editUserInfoPopup.close();
+  editUserInfoPopup.closes();
 })
 
 openAddButton.addEventListener('click', () => {
@@ -105,6 +116,7 @@ openAddButton.addEventListener('click', () => {
   addValidation.submitButtonNotActive();
   addCardPopup.open();
   addCardPopup.uxButtonClear();
+  addCardPopup.resetForm();
 })
 
 openFormEdit.addEventListener('click', () => {
@@ -121,4 +133,5 @@ openAvatarEdit.addEventListener('click', () => {
   editAvatarValidation.submitButtonNotActive();
   avatarEditPopup.open();
   avatarEditPopup.uxButtonClear();
+  avatarEditPopup.resetForm();
 })
