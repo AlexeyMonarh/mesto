@@ -32,7 +32,6 @@ Promise.all([api.getUser(), api.getInitialCards() ])
     editInfo.setUserInfo(res.name, res.about, res.avatar);
     const element = data.map(({ name, link, owner, _id, likes }) => ({ name, link, owner, _id, likes }));
     renderCard.renderItem(element);
-    
   }).catch(() => {
     console.log(`Ошибка: ${res.status}`);
   })
