@@ -32,5 +32,3 @@
 
 ## Ссылка на проект
 * https://alexeymonarh.github.io/mesto/
-
-### Спасибо!
