@@ -26,9 +26,8 @@
 * Figma
 * Git
 * VSCode
-* API
+* API(Яндекс.Практикума)
 
 ***Проект собран при помощи Webpack***
 
-## Ссылка на проект
-* https://alexeymonarh.github.io/mesto/
+## [Ссылка на проект](https://alexeymonarh.github.io/mesto/)
